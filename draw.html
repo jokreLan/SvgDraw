@@ -1,0 +1,518 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>电子白板</title>
+	<style type="text/css">
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+
+	.allVideoBox{
+    overflow: hidden;
+    /* padding-bottom: 0px; */
+}
+.allVideos{
+    /* float: right; */
+    /* position: relative; */
+    overflow-y: auto
+    
+}
+.drawAllvideos div.videoBig{
+    width: 220px;
+    height: 162px;
+    display: block;
+    float: none;
+    margin: 5px 0px;
+
+}
+/* div.videoBig{
+    width: 220px;
+height: 162px;
+display: block;
+float: none;
+margin: 5px 0px;
+} */
+
+/* css('width','220px'). css('height','162px').css('display','block').css('float','none').css('margin','5px 0px')*/
+/* css('padding-bottom',' 0px') */
+
+
+textarea {
+font-family: monospace;
+border-color: rgb(169, 169, 169);
+}
+
+textarea {
+-webkit-appearance: textarea;
+background-color: white;
+-webkit-rtl-ordering: logical;
+flex-direction: column;
+resize: auto;
+cursor: text;
+white-space: pre-wrap;
+word-wrap: break-word;
+border-width: 1px;
+border-style: solid;
+border-color: initial;
+border-image: initial;
+padding: 2px;
+}
+
+input,
+textarea,
+select,
+button {
+text-rendering: auto;
+color: initial;
+letter-spacing: normal;
+word-spacing: normal;
+text-transform: none;
+text-indent: 0px;
+text-shadow: none;
+display: inline-block;
+text-align: start;
+margin: 0em;
+font: 400 13.3333px Arial;
+}
+
+input,
+textarea,
+select,
+button,
+meter,
+progress {
+-webkit-writing-mode: horizontal-tb;
+}
+
+#bj {
+background: #fff;
+/*背景图*/
+}
+
+
+#kuang {
+width: 8%;
+height: 100%;
+background: rgba(243,248,250,1);
+/* padding-top: 20px; */
+min-width: 80px;
+float: left;
+position: relative;
+} 
+
+.note-box {
+position: absolute;
+z-index: 9;
+width: auto;
+height: auto;
+}
+
+.note-box textarea {
+resize: none;
+background: transparent;
+border: none;
+color: #000;
+font-size: 2rem;
+font-weight: 700;
+font-family: "微软雅黑";
+}
+
+.toolbar-active,
+.toolbar-active:hover {
+opacity: 1 !important;
+}
+
+.k1 {
+width: 32px;
+height: 32px;
+cursor: pointer;
+transition: .2s linear;
+display: block;
+opacity: .25;
+position: relative;
+margin: 20px auto;
+}
+
+.k1:hover {
+opacity: 1;
+}
+
+.k1:hover .tooltip-inner-wrapper {
+display: block;
+}
+
+.button {
+border: none;
+color: white;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s;
+transition-duration: 0.4s;
+position: absolute;
+top: 4px;
+left: 4px;
+width: 26px;
+height: 25px;
+padding: 0;
+margin: 0 auto;
+}
+
+
+
+.color {
+
+margin: 20px auto;
+width: 28px;
+height: 28px;
+
+border: 1px solid rgba(34, 34, 34, 0.28);
+border-radius: 50%;
+cursor: pointer;
+transition: .2s linear;
+display: block;
+position: relative;
+}
+
+#color {
+position: absolute;
+display: block;
+width: 18px;
+height: 18px;
+background-color: transparent;
+border-radius: 50%;
+top: 4px;
+left: 4px;
+}
+
+input[type="color"]:focus {
+outline: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+padding: 0;
+border-radius: 50%;
+}
+
+input[type="color"]::-webkit-color-swatch {
+border: 0;
+border-radius: 50%;
+}
+
+#note {
+background: #222;
+-webkit-mask-size: 24px;
+-webkit-mask: url(../images/image/font.svg) no-repeat 0 0;
+display: block;
+}
+
+#xpc {
+background: #222;
+-webkit-mask-size: 24px;
+-webkit-mask: url(../images/image/eraser.svg) no-repeat 0 0;
+display: block;
+}
+
+#chexiao {
+background: #222;
+-webkit-mask-size: 24px;
+-webkit-mask: url(../images/image/undo.svg) no-repeat 0 0;
+display: block;
+}
+
+#qingping {
+background: #222;
+-webkit-mask-size: 24px;
+-webkit-mask: url(../images/image/del.svg) no-repeat 0 0;
+display: block;
+}
+
+#xiazai {
+background: #222;
+-webkit-mask-size: 24px;
+-webkit-mask: url(../images/image/save.svg) no-repeat 0 0;
+display: block;
+}
+
+.tooltip-inner-wrapper {
+display: none;
+width: 400px;
+position: absolute;
+left: -200px;
+margin-left: 50%;
+bottom: 100%;
+margin-bottom: 8px;
+text-align: center;
+z-index: 10000;
+}
+
+.tooltip-inner-wrapper:after {
+content: '';
+position: absolute;
+border-top: 5px solid #222;
+border-left: 4px solid transparent;
+border-right: 4px solid transparent;
+bottom: -5px;
+left: 50%;
+margin-left: -5px;
+}
+
+.tooltip {
+background-color: #222;
+color: #fff;
+white-space: nowrap;
+padding: 6px 8px;
+display: inline-block;
+line-height: 16px;
+min-height: 16px;
+min-height: 16px;
+vertical-align: bottom;
+max-width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+font-size: 12px;
+}
+.ftSize div.fontItem {
+width: 18px;
+height: 18px;
+background: rgba(34, 34, 34, .1);
+float: left;
+border-radius: 50%;
+position: relative;
+margin-right: 10px;
+cursor: pointer;
+}
+.k1 .button{
+width: 28px;
+height: 28px;
+display: block;
+}
+
+#Line {
+/* background: #222; */
+background: #222;
+-webkit-mask-size: 24px;
+-webkit-mask: url(../images/image/huabi.svg) no-repeat 0 0;
+display: block;
+/* background: url(../images/huab.png) no-repeat 0 0; */
+
+}
+.upload {
+width: 28px;
+height: 28px;
+display: block;
+margin: 0px auto;
+
+background: url(../images/image/pg.png) no-repeat;
+
+}
+
+.upload_pic {
+display: block;
+width: 100%;
+height: 22px;
+position: absolute;
+left: 0;
+top: 0;
+opacity: 0;
+border-radius: 5px;
+}
+#draw {
+background: #fff;
+float: left;
+width: calc(100% - 224px);
+position: relative;
+}
+.drawFb{
+
+font-size:20px;
+font-family:MicrosoftYaHei;
+font-weight:400;
+color:rgba(0,160,233,1);
+margin-bottom: 30px;
+text-align: center
+}
+
+#textInput {
+position: absolute;
+top: 31px;
+left: -110px;
+width: 321px;
+margin: auto;
+height: 42px;
+background-color: #fff;
+padding: 4px;
+box-shadow: 0 0 1px 1px #ccc;
+border-radius: 3px;
+}
+ #textInput>button {
+border: 1px solid #ccc;
+}
+#textInput .btn{
+display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: 400;
+line-height: 1.42857143;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+touch-action: manipulation;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+border: 1px solid transparent;
+border-radius: 4px;
+color: #333;
+background-color: #fff;
+border-color: #ccc;
+}
+#textInput input{
+text-rendering: auto;
+color: initial;
+letter-spacing: normal;
+word-spacing: normal;
+text-transform: none;
+text-indent: 0px;
+text-shadow: none;
+display: inline-block;
+text-align: start;
+margin: 0em;
+font: 400 13.3333px Arial;
+
+}
+#ftSize{
+position: absolute;
+
+left: 70px;
+top: 140px;
+border: 1px solid rgba(34, 34, 34, .1);
+/* width: 46px; */
+padding: 10px;
+border-radius: 23px;
+background: #fff;
+}
+.fontItem{
+text-align: center;
+width: 24px;
+height: 24px;
+background: rgba(34, 34, 34, .1);
+float: left;
+border-radius: 50%;
+position: relative;
+margin-right: 10px;
+cursor: pointer;
+margin: 10px 0px;
+line-height: 25px;
+}
+
+	</style>
+</head>
+
+<body id="bj">
+	<div style="" id="draw">
+		<div id="kuang">
+			<div class="drawFb"> 画板 </div>
+			<div class="upload k1">
+				<input type="file" class="upload_pic" id="upload" />
+			</div>
+			<div class="k1" class="line toolbar-active">
+				<input type="button" value="" id="Line" class="button button2">
+				<span class="tooltip-inner-wrapper">
+					<span class="tooltip">
+						画笔
+					</span>
+				</span>
+			</div>
+			<!-- 文字 -->
+			<div class="k1">
+				<input type="button" value="" id="note" class="button button2">
+				<span class="tooltip-inner-wrapper">
+					<span class="tooltip">
+						编辑
+					</span>
+				</span>
+			</div>
+			<!-- 橡皮擦 -->
+			<div class="k1">
+				<input type="button" value="" id="xpc" class="button button2">
+				<span class="tooltip-inner-wrapper">
+					<span class="tooltip">
+						橡皮擦
+					</span>
+				</span>
+			</div>
+			<!-- 删除 -->
+			<div class="k1">
+				<input type="button" value="" id="qingping" class="button button2">
+				<span class="tooltip-inner-wrapper">
+					<span class="tooltip">
+						清屏
+					</span>
+				</span>
+			</div>
+			<!-- 撤销 -->
+			<div class="k1">
+				<input type="button" value="" id="chexiao" class="button button2">
+				<span class="tooltip-inner-wrapper">
+					<span class="tooltip">
+						撤销
+					</span>
+				</span>
+			</div>
+			<div class="color">
+				<input type="color" id="color" class="button button2">
+			</div>
+			<!-- 保存 -->
+			<div class="k1">
+				<input type="button" value="" id="xiazai" class="button button2">
+				<span class="tooltip-inner-wrapper">
+					<span class="tooltip">
+						保存
+					</span>
+				</span>
+			</div>
+
+			<div class="k1" style="display: none;">
+				<input class="button button2" type="range" id="cuxi" value="20" min="0" max="20">
+			</div>
+
+
+
+
+
+
+		</div>
+		<svg id="svg" height="100%" width="92%"></svg>
+
+		<div id="textInput" class="btn-group" txtX='702' txtY='309' style="display: none; left: 702px; top: 309px;">
+				<input type="text" maxlength="100" class="btn btn-default">
+				<button tabindex="-1" onclick="submit(this)" class="btn btn-default ng-binding">提交</button>
+				<button tabindex="-1" onclick="cancel(this)" class="btn btn-default ng-binding">取消</button>
+			</div>
+	</div>
+
+	<script src="./js/jquery.js"></script>
+	<!-- <script src="../layer/layer.js"></script> -->
+	<!-- <script src="./js/rgbcolor.min.js"></script>
+	<script src="./js/stackblur.min.js"></script> -->
+	<script src="./js/saveSvgAsPng.js"></script>
+	
+	<script type="text/javascript" src="./js/svgDraw.js"></script>
+</body>
+
+</html>
